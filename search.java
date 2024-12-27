@@ -8,7 +8,6 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-
 public class search {
     private final String newpath;
     private final String traget;
