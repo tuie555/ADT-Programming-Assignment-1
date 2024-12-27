@@ -1,13 +1,12 @@
 import java.io.*;
 import java.util.*;
-
-
-public class sortbyID  {
+public class Sort {
     String firstpath;
-    private Vector<Student> student = new Vector<Student>();
-    public sortbyID(String path){
+    private final Vector<Student> student = new Vector<Student>();
+    public Sort(String path){
         this.firstpath = path;
     }
+
     public void readCSV() throws FileNotFoundException, IOException {
         File file = new File(firstpath);
         
@@ -50,10 +49,58 @@ public class sortbyID  {
     
 
 
-
     //Display results
-    public void DisandSort() {
-        long startTime = System.nanoTime();
+    public void Sortfirst() {
+        boolean swapped;
+        int n = student.size();
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false; // Reset the swapped flag for each pass
+            for (int j = 0; j < n - i - 1; j++) {
+                // Compare adjacent elements
+                if (student.get(j).getFirstName().compareTo(student.get(j+1).getFirstName()) > 0) {
+                    // Swap arr[j] and arr[j + 1]
+                    Student temp = student.get(j);
+                    student.set(j, student.get(j+1));
+                    student.set(j+1, temp);
+                    swapped = true; // Set the flag to true if a swap occurred
+                }
+            }
+            // If no two elements were swapped, the array is sorted
+            if (!swapped) {
+                break; // Exit the loop early if the array is sorted
+            }
+        }
+        //Display sortlist
+        for (Student s : student) {
+            System.out.println(s); // Assuming Student class has a proper toString method
+        }
+    }
+    public void Sortlast() {
+        boolean swapped;
+        int n = student.size();
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false; // Reset the swapped flag for each pass
+            for (int j = 0; j < n - i - 1; j++) {
+                // Compare adjacent elements
+                if (student.get(j).getLastname().compareTo(student.get(j+1).getLastname()) > 0) {
+                    // Swap arr[j] and arr[j + 1]
+                    Student temp = student.get(j);
+                    student.set(j, student.get(j+1));
+                    student.set(j+1, temp);
+                    swapped = true; // Set the flag to true if a swap occurred
+                }
+            }
+            // If no two elements were swapped, the array is sorted
+            if (!swapped) {
+                break; // Exit the loop early if the array is sorted
+            }
+        }
+        //Display sortlist
+        for (Student s : student) {
+            System.out.println(s); // Assuming Student class has a proper toString method
+        }
+    }
+    public void SortID() {
         boolean swapped;
         int n = student.size();
         for (int i = 0; i < n - 1; i++) {
@@ -73,8 +120,6 @@ public class sortbyID  {
                 break; // Exit the loop early if the array is sorted
             }
         }
-        long endTime = System.nanoTime();
-        long duration = endTime - startTime/1000000;
         //Display sortlist
         for (Student s : student) {
             System.out.println(s);

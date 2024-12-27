@@ -8,30 +8,28 @@ public class Main {
         String inputFile = args[0];
         String command = args[1];
         String target = args.length == 3 ? args[2] : null;
+        Sort sort = new Sort(inputFile);
                 switch (command) {
                     case "-n":
-                        sortbyID sortID = new sortbyID(inputFile);
                         try {
-                            sortID.readCSV();
-                            sortID.DisandSort();
+                            sort.readCSV();
+                            sort.Sortfirst();
                         } catch (IOException e) {
                             System.out.println("Error: The file was not found. Please check the path and try again.");
                         }
                         break;
                     case "-f":
-                        sortFirst sortFirst = new sortFirst(inputFile);
                         try {
-                            sortFirst.readCSV();
-                            sortFirst.DisandSort();
+                            sort.readCSV();
+                            sort.Sortlast();
                         } catch (IOException e) {
                             System.out.println("Error: The file was not found. Please check the path and try again.");
                         }
                         break;
                     case "-l":
-                        Sortlast sortlast = new Sortlast(inputFile);
                         try {
-                            sortlast.readCSV();
-                            sortlast.DisandSort();
+                            sort.readCSV();
+                            sort.SortID();
                         } catch (IOException e) {
                             System.out.println("Error: The file was not found. Please check the path and try again.");
                         }
