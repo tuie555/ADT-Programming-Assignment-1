@@ -17,10 +17,8 @@ public class search {
         this.newpath = newpath;
         this.traget = traget;
     }
-    public void readCSV() throws FileNotFoundException, IOException {
+    public void readCSV() throws FileNotFoundException{
         File file = new File(newpath);
-        
-        
         // Check if the file exists
         if (!file.exists()) {
             System.out.println("Error: The file does not exist at the specified path.");
@@ -34,7 +32,7 @@ public class search {
         }
 
         // Use InputStreamReader with UTF-8 encoding
-        try (Scanner input = new Scanner(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
+        Scanner input = new Scanner(file, "UTF-8");
             // Skip the first 7 lines
             for (int i = 0; i < 7; i++) {
                 if (input.hasNextLine()) {
@@ -48,26 +46,17 @@ public class search {
             // Read the CSV file line by line
             while (input.hasNextLine()) {
                 String dataLine = input.nextLine();
-                StringTokenizer stu = new StringTokenizer(dataLine.trim(), ",");
+                StringTokenizer stu = new StringTokenizer(dataLine.trim(),",");
                 stu.nextToken(); // Skip the first token (if necessary)
-                student.addElement(new Student(stu.nextToken(), stu.nextToken(), stu.nextToken()));
+                student.addElement(new Student(stu.nextToken().trim(), stu.nextToken().trim(), stu.nextToken().trim()));
             }
-        } catch (IOException e) {
-            System.out.println("Error reading the file: " + e.getMessage());
+        input.close();
         }
-    }
-    
-    
-    
-    
-    
-    
-    
     public void display() {
-        String result = linearSearch(traget);
+        String result = linearSearch();
         System.out.println(result);
     }
-    public String linearSearch(String traget) {
+    public String linearSearch() {
         for (int i = 0; i < student.size(); i++) {
             if (student.get(i).getFirstName().equalsIgnoreCase(traget)) {
                 return "Element is present at index " + (i + 1) + ": "+student.get(i).getSID()+" "+ student.get(i).getFirstName() + " " + student.get(i).getLastname(); // Target found
@@ -75,6 +64,6 @@ public class search {
         }
 
     // Target was not found
-    return "Element is not present ";
+    return "Target was not found";
     }
 }

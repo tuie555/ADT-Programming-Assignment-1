@@ -40,9 +40,10 @@ public class Sort {
             // Read the CSV file line by line
             while (input.hasNextLine()) {
                 String dataLine = input.nextLine();
-                StringTokenizer stu = new StringTokenizer(dataLine.trim(), ",");
-                stu.nextToken(); // Skip the first token (if necessary)
-                student.addElement(new Student(stu.nextToken(), stu.nextToken(), stu.nextToken()));
+                StringTokenizer stu = new StringTokenizer(dataLine.trim(),",");
+                stu.nextToken();
+                 // Skip the first token (if necessary)
+                student.addElement(new Student(stu.nextToken().trim(), stu.nextToken().trim(), stu.nextToken().trim()));
             }
         } catch (IOException e) {
             System.out.println("Error reading the file: " + e.getMessage());
