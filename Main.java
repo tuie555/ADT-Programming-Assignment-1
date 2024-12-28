@@ -5,8 +5,8 @@ public class Main {
             System.out.println("Error: Insufficient arguments. Please provide an input file and a command.");
             return;
         }
-        String inputFile = args[0];
-        String command = args[1];
+        String command = args[0];
+        String inputFile = args[1];
         String traget = args.length == 3 ? args[2] : null;
         Sort sort = new Sort(inputFile);
                 switch (command) {
