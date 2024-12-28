@@ -173,7 +173,7 @@ java Main -l class.csv
 672115048 SUKRITPONG WONGPANYA
 672115043 WASINPAT YANIN
 ```
-# Searching for "NUT"
+# Searching Firstname
 
 ```bash
 java Main -s class.csv NUT
